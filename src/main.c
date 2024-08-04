@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>    // Add this for time-related functions
 #include <string.h>
+#include <sqlite3.h>
 
 #include "/Users/edward/Documents/SatelliteOrbitSimulation/include/satellite.h"
 #include "/Users/edward/Documents/SatelliteOrbitSimulation/include/database.h"
@@ -18,7 +20,12 @@ int main() {
     double mass = 1000; // in kg
     const char *satName = "NYESAT";
 
-    
+    // Generate a unique table name using the current timestamp
+    time_t now = time(NULL);
+    struct tm *tm_info = localtime(&now);
+    char tableName[64];
+    strftime(tableName, sizeof(tableName), "satellite_data_%Y%m%d_%H%M%S", tm_info);
+
     // Initialize Satellite
     Satellite *sat = initializeSatellite(satName, initialPosition, initialVelocity, initialAcceleration, mass);
 
@@ -30,7 +37,7 @@ int main() {
     }
 
     // Create table
-    if (createTable(db)) {
+    if (createTable(db, tableName)) {
         closeDatabase(db);
         free(sat);
         return 1;
@@ -39,7 +46,7 @@ int main() {
     for (int t = 0; t <= TOTAL_DURATION; t += TIME_STEP) {
         
         // Insert initial satellite data
-        if (insertSatelliteData(db, sat->name, sat->position, sat->velocity, sat->acceleration, sat->mass, t)) {
+        if (insertSatelliteData(db, tableName, sat->name, sat->position, sat->velocity, sat->acceleration, sat->mass, t)) {
             closeDatabase(db);
             free(sat);
             return 1;
