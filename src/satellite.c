@@ -1,4 +1,7 @@
 #include "/Users/edward/Documents/SatelliteOrbitSimulation/include/satellite.h"
+#include "/Users/edward/Documents/SatelliteOrbitSimulation/include/planet.h"
+#include "/Users/edward/Documents/SatelliteOrbitSimulation/src/planet.c"
+
 
 #include <stddef.h>
 #include <string.h>
@@ -7,7 +10,7 @@
 #include <stdlib.h> // Include this for malloc and exit
 
 #define G 6.67430E-11 // Gravitational Constant
-#define earthMass 5.974E24
+
 
 Satellite* initializeSatellite(const char *name, double pos[], double vel[], double acc[], double mass) {
     // Allocate memory for the satellite struct including space for the name
@@ -24,6 +27,7 @@ Satellite* initializeSatellite(const char *name, double pos[], double vel[], dou
     for (size_t i = 0; i < 3; ++i) {
         sat->position[i] = pos[i];
         sat->velocity[i] = vel[i];
+        sat->acceleration[i] = acc[i];
     }
     sat->mass = mass;
     strcpy(sat->name, name); // Copy the name into the flexible array member
@@ -31,10 +35,10 @@ Satellite* initializeSatellite(const char *name, double pos[], double vel[], dou
     return sat;
 }
 
-void updatePosition(Satellite* sat, double timeStep) {
+void satupdatePosition(Satellite* sat, Planet *pl, double timeStep) {
     
     double R =  sqrt(pow(sat->position[0],2) + pow(sat->position[1],2) + pow(sat->position[2],2));
-    double Ap = -(G * earthMass)/pow(R,3);
+    double Ap = -(G * pl->mass)/pow(R,3);
     for (size_t i = 0; i < 3; ++i) {
         sat->acceleration[i] = sat->position[i] * Ap;
         sat->velocity[i] += sat->acceleration[i] * timeStep;  //Change in Velocity
