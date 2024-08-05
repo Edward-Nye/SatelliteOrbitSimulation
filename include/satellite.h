@@ -1,6 +1,8 @@
 #ifndef SATELLITE_H
 #define SATELLITE_H
 
+#include "/Users/edward/Documents/SatelliteOrbitSimulation/include/planet.h"
+
 typedef struct {
     double position[3];
     double velocity[3];
@@ -10,7 +12,7 @@ typedef struct {
 } Satellite;
 
 Satellite* initializeSatellite(const char *name, double pos[], double vel[], double acc[], double mass);
-void updatePosition(Satellite* sat, double timeStep);
+void satupdatePosition(Satellite* sat, Planet *pl, double timeStep);
 void applyManeuver(Satellite* sat, double deltaV[]);
 
 #endif // SATELLITE_H
