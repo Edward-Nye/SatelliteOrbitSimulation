@@ -11,7 +11,7 @@ typedef struct {
     char name[]; // Ensure this is a double, not a pointer
 } Planet;
 
-Planet* initializePlanet(const char *name, double pos[], double vel[], double acc[], double radius, double mass, double spin[]);
-void plupdatePosition(Planet* pl, double timeStep);
+//void initPlanet(Planet* pl, const char *name, double pos[], double vel[], double acc[], double radius, double mass, double spin[]);
+void PositionUpdate(Planet* pl, double timeStep);
 
 #endif // PLANET_H

@@ -1,6 +1,6 @@
 #include "/Users/edward/Documents/SatelliteOrbitSimulation/include/satellite.h"
 #include "/Users/edward/Documents/SatelliteOrbitSimulation/include/planet.h"
-#include "/Users/edward/Documents/SatelliteOrbitSimulation/src/planet.c"
+
 
 
 #include <stddef.h>
@@ -12,10 +12,9 @@
 #define G 6.67430E-11 // Gravitational Constant
 
 
-Satellite* initializeSatellite(const char *name, double pos[], double vel[], double acc[], double mass) {
+/* void satelliteInitialize(Satellite *sat, const char *name, double pos[], double vel[], double acc[], double mass) {
     // Allocate memory for the satellite struct including space for the name
-    size_t nameLength = strlen(name) + 1; // +1 for the null terminator
-    Satellite *sat = (Satellite *)malloc(sizeof(Satellite) + nameLength);
+    strcpy(sat->name, name);
     
     // Check if memory allocation was successful
     if (sat == NULL) {
@@ -30,10 +29,9 @@ Satellite* initializeSatellite(const char *name, double pos[], double vel[], dou
         sat->acceleration[i] = acc[i];
     }
     sat->mass = mass;
-    strcpy(sat->name, name); // Copy the name into the flexible array member
     
-    return sat;
-}
+    
+} */
 
 void satupdatePosition(Satellite* sat, Planet *pl, double timeStep) {
     

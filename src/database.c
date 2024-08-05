@@ -73,8 +73,8 @@ int createTables(sqlite3 *db, const char *satelliteTableName, const char *planet
 int insertSatelliteData(sqlite3 *db, const char *tableName, const char *name, double position[], double velocity[], double acceleration[], double mass, int timestamp){
     char sql[512];
     snprintf(sql, sizeof(sql),
-        "INSERT INTO %s (name, timestamp, positionX, positionY, positionZ, velocityX, velocityY, velocityZ, accelerationX, accelerationY, accelerationZ, mass, spinX, spinY) "
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", tableName);
+        "INSERT INTO %s (name, timestamp, positionX, positionY, positionZ, velocityX, velocityY, velocityZ, accelerationX, accelerationY, accelerationZ, mass) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", tableName);
     
     sqlite3_stmt *stmt;
     if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) != SQLITE_OK) {
@@ -108,8 +108,8 @@ int insertSatelliteData(sqlite3 *db, const char *tableName, const char *name, do
 int insertPlanetData(sqlite3 *db, const char *tableName, const char *name, double position[], double velocity[], double acceleration[], double mass, int timestamp, double spin[]){
     char sql[512];
     snprintf(sql, sizeof(sql),
-        "INSERT INTO %s (name, timestamp, positionX, positionY, positionZ, velocityX, velocityY, velocityZ, accelerationX, accelerationY, accelerationZ, mass) "
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", tableName);
+        "INSERT INTO %s (name, timestamp, positionX, positionY, positionZ, velocityX, velocityY, velocityZ, accelerationX, accelerationY, accelerationZ, mass, spinX, spinY) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", tableName);
     
     sqlite3_stmt *stmt;
     if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) != SQLITE_OK) {

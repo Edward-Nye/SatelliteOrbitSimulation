@@ -11,7 +11,7 @@ typedef struct {
     char name[]; // Ensure this is a double, not a pointer
 } Satellite;
 
-Satellite* initializeSatellite(const char *name, double pos[], double vel[], double acc[], double mass);
+//void satelliteInitialize(Satellite *sat, const char *name, double pos[], double vel[], double acc[], double mass);
 void satupdatePosition(Satellite* sat, Planet *pl, double timeStep);
 void applyManeuver(Satellite* sat, double deltaV[]);
 
