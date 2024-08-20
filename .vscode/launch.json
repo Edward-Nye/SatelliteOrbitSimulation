@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug",
+      "name": "C++ Launch",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/main",
@@ -10,9 +10,9 @@
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
-      "externalConsole": true,
+      "externalConsole": false,
       "MIMode": "gdb",
-      "miDebuggerPath": "/usr/bin/gdb",
+      "miDebuggerPath": "/usr/local/bin/gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -21,15 +21,41 @@
         }
       ],
       "preLaunchTask": "build",
-      "internalConsoleOptions": "openOnSessionStart"
+      "miDebuggerArgs": "",
+      "logging": {
+        "trace": true,
+        "traceResponse": true,
+        "engineLogging": true
+      },
+      "targetArchitecture": "x86_64"
     },
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "lldb",
+      "type": "cppdbg",
       "request": "launch",
+      "program": "${workspaceFolder}/build/main",
       "args": [],
-      "cwd": "/Users/edward/Documents/SatelliteOrbitSimulation/src",
-      "program": "/Users/edward/Documents/SatelliteOrbitSimulation/src/build/Debug/outDebug"
-    }
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/local/bin/gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "build",
+      "miDebuggerArgs": "",
+      "logging": {
+        "trace": true,
+        "traceResponse": true,
+        "engineLogging": true
+      },
+      "targetArchitecture": "x86_64"
+    },
   ]
 }

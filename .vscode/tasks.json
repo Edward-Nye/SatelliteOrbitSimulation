@@ -4,24 +4,41 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "gcc",
+            "command": "mkdir",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "/Users/edward/Documents/SatelliteOrbitSimulation/src/main.c",
-                "/Users/edward/Documents/SatelliteOrbitSimulation/src/satellite.c",
-                "/Users/edward/Documents/SatelliteOrbitSimulation/src/planet.c",
-                "/Users/edward/Documents/SatelliteOrbitSimulation/src/database.c",
+                "-p",
+                "${workspaceFolder}/build/Debug"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-Wshadow",
+                "-Wformat=2",
+                "-Wcast-align",
+                "-Wconversion",
+                "-Wsign-conversion",
+                "-Wnull-dereference",
+                "-g3",
+                "-O0",
+                "-I${workspaceFolder}/include",
+                "-c",
+                "${workspaceFolder}/src/main.cpp",
                 "-o",
-                "/Users/edward/Documents/SatelliteOrbitSimulation/build/satellite",
-                "-lsqlite3"
+                "${workspaceFolder}/build/Debug/main.o"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "problemMatcher": ["$gcc"],
-            "detail": "Generated task for building the project."
+            "dependsOn": "build"
         }
     ]
 }
