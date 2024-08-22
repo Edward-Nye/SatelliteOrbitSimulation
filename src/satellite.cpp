@@ -12,20 +12,26 @@ Satellite::Satellite(const std::string& name, const std::array<double, 3>& pos,
 void Satellite::updatePosition(const Planet& planet, double timeStep) {
     // Compute the distance vector between the satellite and the planet
     std::array<double, 3> distanceVector;
-    double distance = 0.0;
+    double massSun =  1.988400E30;
+    double G = 6.67430E-11;
+    double distancePlanet = 0.0;
+    double distanceSun = 0.0;
 
     for (int i = 0; i < 3; ++i) {
         distanceVector[i] = planet.position[i] - position[i];
-        distance += distanceVector[i] * distanceVector[i];
+        distancePlanet += distanceVector[i] * distanceVector[i];
+        distanceSun += position[i] * position[i];
     }
-
+    
     // Compute the gravitational force
-    distance = sqrt(distance);
-    double force = (planet.mass * mass) / (distance * distance);
+    distanceSun = sqrt(distanceSun);
+    distancePlanet = sqrt(distancePlanet);
+    double acc_sun = -(G * massSun) / (distanceSun * distanceSun * distanceSun);
+    double acc_planet = -(G * planet.mass) / (distancePlanet * distancePlanet * distancePlanet);
 
     // Update the acceleration based on the gravitational force
     for (int i = 0; i < 3; ++i) {
-        acceleration[i] = force * distanceVector[i] / distance;
+        acceleration[i] = (acc_planet * distanceVector[i]) + (acc_sun * position[i]);
     }
 
     // Update velocity with the current acceleration

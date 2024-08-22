@@ -14,9 +14,9 @@ public:
 
     Simulation(const std::string& dbPath);
 
-    void loadPlanets(const std::string& planetsFile, const std::string& planetName);
-    void loadSatellites(const std::string& satellitesFile, const std::vector<std::string>& satelliteNames);
-    void run(int totalDuration, int timeStep);
+    void loadPlanets(const std::string& planetsFile, const std::string& planetName, const std::string& startDate);
+    void loadSatellites(const std::string& satellitesFile, const std::string& satelliteName,  const std::string& startDate);
+    void run(int totalDuration, int timeStep, const std::string& startDate);
 };
 
 #endif // SIMULATION_HPP

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 
+
 int main() {
     // Define paths to the database and input files
     std::string dbPath = "/Users/edward/Documents/SatelliteOrbitSimulation/data/OrbitalData.db";
@@ -11,19 +12,22 @@ int main() {
     // Create a Simulation object
     Simulation simulation(dbPath);
 
+    //Specific Start Date
+    std::string startDate = "2025-01-01T00:00:00";
+
     // Load the specific planet and satellites to be simulated
-    std::string planetName = "Earth"; // Example: Simulate orbit around Earth
-    std::vector<std::string> satelliteNames = {"Moon"}; // Example: Choose specific satellites
+    std::string planetName = "EARTH"; // Example: Simulate orbit around Earth
+    std::string satelliteNames = "MOON"; // Example: Choose specific satellites
 
     // Load data from files
-    simulation.loadPlanets(planetsFile, planetName);
-    simulation.loadSatellites(satellitesFile, satelliteNames);
+    simulation.loadPlanets(planetsFile, planetName, startDate);
+    simulation.loadSatellites(satellitesFile, satelliteNames, startDate);
 
     // Run the simulation
-    int totalDuration = 86400; // Total simulation duration in seconds (e.g., 1 day)
-    int timeStep = 1;         // Time step in seconds (e.g., 1 minute)
+    int totalDuration = 100000; // Total simulation duration in seconds (e.g., 1 day)
+    int timeStep = 10;         // Time step in seconds (e.g., 1 minute)
 
-    simulation.run(totalDuration, timeStep);
+    simulation.run(totalDuration, timeStep, startDate);
 
     std::cout << "Simulation completed successfully!" << std::endl;
 
