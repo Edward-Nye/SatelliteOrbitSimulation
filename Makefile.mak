@@ -1,20 +1,39 @@
+# Compiler
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17 -Iinclude
 
-SRC_DIR = src
-OBJ_DIR = build
+# Compiler flags
+CXXFLAGS = -Wall -Wextra -std=c++17
 
-SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
-OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SOURCES))
-EXECUTABLE = $(OBJ_DIR)/satellite_simulation
+# Directories
+INCDIR = include
+SRCDIR = src
+BUILDDIR = build
 
-all: $(EXECUTABLE)
+# Source files
+SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+# Object files
+OBJECTS = $(SOURCES:$(SRCDIR)/%.cpp=$(BUILDDIR)/%.o)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Target executable
+TARGET = SatelliteOrbitSimulation
 
+# Build rules
+all: $(TARGET)
+
+# Link the executable
+$(TARGET): $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(TARGET)
+
+# Compile source files into object files
+$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp | $(BUILDDIR)
+	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
+
+# Create build directory
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
+
+# Clean up
 clean:
-	rm -rf $(OBJ_DIR)/*.o $(EXECUTABLE)
+	rm -rf $(BUILDDIR) $(TARGET)
+

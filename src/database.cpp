@@ -5,9 +5,12 @@
 
 // Constructor to open the database connection
 Database::Database(const std::string& dbPath) {
-    if (sqlite3_open(dbPath.c_str(), &db)) {
+    int rc = sqlite3_open(dbPath.c_str(), &db);
+    if (rc) {
         std::cerr << "Cannot open database: " << sqlite3_errmsg(db) << std::endl;
         db = nullptr;
+    } else {
+        std::cout << "Opened database successfully: " << dbPath << std::endl;
     }
 }
 
@@ -15,11 +18,13 @@ Database::Database(const std::string& dbPath) {
 Database::~Database() {
     if (db) {
         sqlite3_close(db);
+        std::cout << "Database closed successfully." << std::endl;
     }
 }
 
 // Method to create the necessary tables in the database
 bool Database::createTables(const std::string& satelliteTable, const std::string& planetTable) {
+    char* errMsg = nullptr;
     std::string sql = "CREATE TABLE IF NOT EXISTS " + satelliteTable + " ("
                       "Time INT, "
                       "Name TEXT, "
@@ -28,9 +33,13 @@ bool Database::createTables(const std::string& satelliteTable, const std::string
                       "AccX REAL, AccY REAL, AccZ REAL, "
                       "Mass REAL);";
                       
-    if (sqlite3_exec(db, sql.c_str(), nullptr, nullptr, nullptr)) {
-        std::cerr << "Cannot create satellite table: " << sqlite3_errmsg(db) << std::endl;
+    int rc = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errMsg);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Cannot create satellite table: " << errMsg << std::endl;
+        sqlite3_free(errMsg);
         return false;
+    } else {
+        std::cout << "Satellite table created successfully: " << satelliteTable << std::endl;
     }
 
     sql = "CREATE TABLE IF NOT EXISTS " + planetTable + " ("
@@ -42,9 +51,13 @@ bool Database::createTables(const std::string& satelliteTable, const std::string
           "Mass REAL, "
           "SpinX REAL, SpinY REAL);";
 
-    if (sqlite3_exec(db, sql.c_str(), nullptr, nullptr, nullptr)) {
-        std::cerr << "Cannot create planet table: " << sqlite3_errmsg(db) << std::endl;
+    rc = sqlite3_exec(db, sql.c_str(), nullptr, nullptr, &errMsg);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Cannot create planet table: " << errMsg << std::endl;
+        sqlite3_free(errMsg);
         return false;
+    } else {
+        std::cout << "Planet table created successfully: " << planetTable << std::endl;
     }
 
     return true;
@@ -69,6 +82,8 @@ bool Database::insertSatelliteData(const std::string& tableName, const Satellite
     if (sqlite3_exec(db, sql.c_str(), nullptr, nullptr, nullptr)) {
         std::cerr << "Cannot insert satellite data: " << sqlite3_errmsg(db) << std::endl;
         return false;
+    } else {
+        std::cout << "Satellite data inserted successfully: " << satellite.name << " at time " << time << std::endl;
     }
 
     return true;
@@ -95,6 +110,8 @@ bool Database::insertPlanetData(const std::string& tableName, const Planet& plan
     if (sqlite3_exec(db, sql.c_str(), nullptr, nullptr, nullptr)) {
         std::cerr << "Cannot insert planet data: " << sqlite3_errmsg(db) << std::endl;
         return false;
+    } else {
+        std::cout << "Planet data inserted successfully: " << planet.name << " at time " << time << std::endl;
     }
 
     return true;

@@ -3,6 +3,8 @@
 
 #include <sqlite3.h>
 #include <string>
+#include "planet.hpp"
+#include "satellite.hpp"
 
 class Database {
 private:

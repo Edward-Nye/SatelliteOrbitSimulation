@@ -2,17 +2,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C++ Launch",
+      "name": "Launch",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/main",
+      "program": "${workspaceFolder}/orbit_simulation",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
       "externalConsole": false,
       "MIMode": "gdb",
-      "miDebuggerPath": "/usr/local/bin/gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -21,41 +20,20 @@
         }
       ],
       "preLaunchTask": "build",
-      "miDebuggerArgs": "",
+      "miDebuggerPath": "/usr/bin/gdb",
       "logging": {
         "trace": true,
         "traceResponse": true,
         "engineLogging": true
-      },
-      "targetArchitecture": "x86_64"
+      }
     },
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
-      "program": "${workspaceFolder}/build/main",
       "args": [],
-      "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "miDebuggerPath": "/usr/local/bin/gdb",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ],
-      "preLaunchTask": "build",
-      "miDebuggerArgs": "",
-      "logging": {
-        "trace": true,
-        "traceResponse": true,
-        "engineLogging": true
-      },
-      "targetArchitecture": "x86_64"
-    },
+      "cwd": "/Users/edward/Documents/SatelliteOrbitSimulation/src",
+      "program": "/Users/edward/Documents/SatelliteOrbitSimulation/src/build/Debug/outDebug"
+    }
   ]
 }

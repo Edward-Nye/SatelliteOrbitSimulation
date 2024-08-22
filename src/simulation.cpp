@@ -78,6 +78,14 @@ void Simulation::run(int totalDuration, int timeStep) {
             for (const auto& planet : planets) {
                 satellite.updatePosition(planet, timeStep);
             }
+            // Log the satellite's position
+            std::cout << "Time: " << currentTime 
+                      << " | Satellite: " << satellite.name 
+                      << " | Position: (" 
+                      << satellite.position[0] << ", " 
+                      << satellite.position[1] << ", " 
+                      << satellite.position[2] << ")" << std::endl;
+
             database.insertSatelliteData("SatelliteData", satellite, currentTime);
         }
 

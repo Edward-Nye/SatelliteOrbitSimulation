@@ -2,9 +2,9 @@
 #define SIMULATION_HPP
 
 #include <vector>
-#include "Planet.hpp"
-#include "Satellite.hpp"
-#include "Database.hpp"
+#include "planet.hpp"
+#include "satellite.hpp"
+#include "database.hpp"
 
 class Simulation {
 public:

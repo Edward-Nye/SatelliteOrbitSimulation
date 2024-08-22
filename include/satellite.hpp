@@ -1,8 +1,11 @@
 #ifndef SATELLITE_HPP
 #define SATELLITE_HPP
 
+#include "planet.hpp"
 #include <string>
 #include <array>
+
+class Planet;
 
 class Satellite {
 public:

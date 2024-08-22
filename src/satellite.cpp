@@ -1,5 +1,6 @@
 #include "satellite.hpp"
 #include "planet.hpp"
+#include <cmath>
 
 // Constructor to initialize the satellite
 Satellite::Satellite(const std::string& name, const std::array<double, 3>& pos,

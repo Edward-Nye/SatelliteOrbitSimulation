@@ -2,43 +2,27 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "Build Orbit Simulation",
             "type": "shell",
-            "command": "mkdir",
+            "command": "g++",
             "args": [
-                "-p",
-                "${workspaceFolder}/build/Debug"
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "compile",
-            "type": "shell",
-            "command": "clang++",
-            "args": [
-                "-Wall",
-                "-Wextra",
-                "-Wpedantic",
-                "-Wshadow",
-                "-Wformat=2",
-                "-Wcast-align",
-                "-Wconversion",
-                "-Wsign-conversion",
-                "-Wnull-dereference",
-                "-g3",
-                "-O0",
-                "-I${workspaceFolder}/include",
-                "-c",
-                "${workspaceFolder}/src/main.cpp",
-                "-o",
-                "${workspaceFolder}/build/Debug/main.o"
+                "-std=c++11",
+                "-g",
+                "-Iinclude",
+                "src/main.cpp",
+                "src/planet.cpp",
+                "src/satellite.cpp",
+                "src/database.cpp",
+                "src/simulation.cpp",
+                "-o", "orbit_simulation",
+                "-lsqlite3"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "problemMatcher": ["$gcc"],
-            "dependsOn": "build"
+            "detail": "Generated task by ChatGPT"
         }
     ]
 }
