@@ -24,8 +24,8 @@ int main() {
     simulation.loadSatellites(satellitesFile, satelliteNames, startDate);
 
     // Run the simulation
-    int totalDuration = 100000; // Total simulation duration in seconds (e.g., 1 day)
-    int timeStep = 10;         // Time step in seconds (e.g., 1 minute)
+    int totalDuration = 31556000; // Total simulation duration in seconds (e.g., 1 day)
+    int timeStep = 3600;         // Time step in seconds (e.g., 1 minute)
 
     simulation.run(totalDuration, timeStep, startDate);
 

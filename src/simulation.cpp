@@ -62,7 +62,7 @@ void Simulation::loadPlanets(const std::string& planetsFile, const std::string& 
 
         std::cout << "Loaded planet: " << name << std::endl; // Add this line
         std::cout << "Specified planet: " << planetName<< std::endl; // Add this line
-
+        std::cout << "Mass: " << mass << std::endl;
         if (name == planetName) {
                        
             // Initialize the SPICE Toolkit
@@ -79,15 +79,15 @@ void Simulation::loadPlanets(const std::string& planetsFile, const std::string& 
             spkezr_c(planetName.c_str(), et, "J2000", "NONE", "SUN", state, &lt);
 
             // Update position and velocity with SPK data
-            pos[0] = state[0];
-            pos[1] = state[1];
-            pos[2] = state[2];
-            vel[0] = state[3];
-            vel[1] = state[4];
-            vel[2] = state[5];
+            pos[0] = state[0] * 1E3;
+            pos[1] = state[1] * 1E3;
+            pos[2] = state[2] * 1E3;
+            vel[0] = state[3] * 1E3;
+            vel[1] = state[4] * 1E3;
+            vel[2] = state[5] * 1E3;
 
             planets.emplace_back(name, pos, vel, acc, radius, mass, spin);
-            std::cout << "Planet Location " << pos[0] << ", " << pos[1] << ", " << pos[2] << std::endl;
+            std::cout << "Planet Location " << pos[0] << ", " << pos[1] << ", " << pos[2] << ", " << mass << std::endl;
             break;
         }
     }
@@ -137,12 +137,12 @@ void Simulation::loadSatellites(const std::string& satellitesFile, const std::st
             spkezr_c(satelliteName.c_str(), et, "J2000", "NONE", "SUN", state, &lt);
 
             // Update position and velocity with SPK data
-            pos[0] = state[0];
-            pos[1] = state[1];
-            pos[2] = state[2];
-            vel[0] = state[3];
-            vel[1] = state[4];
-            vel[2] = state[5];
+            pos[0] = state[0] * 1E3;
+            pos[1] = state[1] * 1E3;
+            pos[2] = state[2] * 1E3;
+            vel[0] = state[3] * 1E3;
+            vel[1] = state[4] * 1E3;
+            vel[2] = state[5] * 1E3;
 
             satellites.emplace_back(name, pos, vel, acc, mass);
             std::cout << "Satellite Location " << pos[0] << ", " << pos[1] << ", " << pos[2] << std::endl;
