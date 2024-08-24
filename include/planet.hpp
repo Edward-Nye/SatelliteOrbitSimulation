@@ -1,8 +1,11 @@
 #ifndef PLANET_HPP
 #define PLANET_HPP
 
+#include "satellite.hpp"
 #include <string>
 #include <array>
+
+class Satellite;
 
 class Planet {
 public:
@@ -18,7 +21,7 @@ public:
            const std::array<double, 3>& vel, const std::array<double, 3>& acc,
            double radius, double mass, const std::array<double, 2>& spin);
 
-    void updatePosition(double timeStep);
+    void updatePosition(const Satellite& Satellite, double timeStep, const std::string& pointOfRef);
 };
 
 #endif // PLANET_HPP

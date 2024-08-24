@@ -141,6 +141,21 @@
     "stop_token": "cpp",
     "text_encoding": "cpp",
     "thread": "cpp",
-    "cinttypes": "cpp"
+    "cinttypes": "cpp",
+    "__tree": "cpp",
+    "any": "cpp",
+    "cfenv": "cpp",
+    "csignal": "cpp",
+    "forward_list": "cpp",
+    "list": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "strstream": "cpp",
+    "typeindex": "cpp",
+    "valarray": "cpp",
+    "source_location": "cpp",
+    "ranges": "cpp",
+    "shared_mutex": "cpp",
+    "stdfloat": "cpp"
   }
 }

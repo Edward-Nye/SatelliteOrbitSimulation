@@ -1,0 +1,103 @@
+{
+  "planets": [
+    {
+      "name": "MERCURY",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 2439400.0,
+      "mass": 3.302e23,
+      "spin": [0.00000124001, 0.0]
+    },
+    {
+      "name": "VENUS",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 6051840.0,
+      "mass": 48.685e23,
+      "spin": [-0.00000029924, 0.0]
+    },
+    {
+      "name": "EARTH",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 6371000.0,
+      "mass": 5.972e24,
+      "spin": [0.00007292115, 0.0]
+    },
+    {
+      "name": "MERCURY BARYCENTER",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 2439400.0,
+      "mass": 3.302e23,
+      "spin": [0.00000124001, 0.0]
+    },
+    {
+      "name": "VENUS BARYCENTER",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 6051840.0,
+      "mass": 48.685e23,
+      "spin": [-0.00000029924, 0.0]
+    },
+    {
+      "name": "EARTH BARYCENTER",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 6371000.0,
+      "mass": 5.972e24,
+      "spin": [0.00007292115, 0.0]
+    },
+    {
+      "name": "MARS BARYCENTER",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 3389920.0,
+      "mass": 6.4171e23,
+      "spin": [0.0000708822, 0.0]
+    },
+    {
+      "name": "JUPITER BARYCENTER",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 71492000.0,
+      "mass": 1.898e27,
+      "spin": [0.00017585, 0.0]
+    },
+    {
+      "name": "SATURN BARYCENTER",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 60268000.0,
+      "mass": 5.6834e26,
+      "spin": [0.000163785, 0.0]
+    },
+    {
+      "name": "URANUS BARYCENTER",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 25559000.0,
+      "mass": 86.813e24,
+      "spin": [-0.000101237, 0.0]
+    },
+    {
+      "name": "NEPTUNE BARYCENTER",
+      "position": [0.0, 0.0, 0.0],
+      "velocity": [0.0, 0.0, 0.0],
+      "acceleration": [0.0, 0.0, 0.0],
+      "radius": 24766000.0,
+      "mass": 102.409e24,
+      "spin": [0.000108338, 0.0]
+    }
+  ]
+}

@@ -64,7 +64,7 @@ bool Database::createTables(const std::string& satelliteTable, const std::string
 }
 
 // Method to insert satellite data into the database
-bool Database::insertSatelliteData(const std::string& tableName, const Satellite& satellite, int time) {
+bool Database::insertSatelliteData(const std::string& tableName, const Satellite& satellite, double time) {
     std::string sql = "INSERT INTO " + tableName + " (Time, Name, PosX, PosY, PosZ, VelX, VelY, VelZ, AccX, AccY, AccZ, Mass) VALUES ("
                       + std::to_string(time) + ", '"
                       + satellite.name + "', "
@@ -90,7 +90,7 @@ bool Database::insertSatelliteData(const std::string& tableName, const Satellite
 }
 
 // Method to insert planet data into the database
-bool Database::insertPlanetData(const std::string& tableName, const Planet& planet, int time) {
+bool Database::insertPlanetData(const std::string& tableName, const Planet& planet, double time) {
     std::string sql = "INSERT INTO " + tableName + " (Time, Name, PosX, PosY, PosZ, VelX, VelY, VelZ, AccX, AccY, AccZ, Mass, SpinX, SpinY) VALUES ("
                       + std::to_string(time) + ", '"
                       + planet.name + "', "

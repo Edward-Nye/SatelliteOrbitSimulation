@@ -9,8 +9,11 @@
                 "-std=c++11",
                 "-g",
                 "-Iinclude",
-                "-I/Users/edward/Documents/cspice/include", // Path to SPICE headers
-                "-L/Users/edward/Documents/cspice/lib",     // Path to SPICE libraries
+                "-I/Users/edward/Documents/cspice/include",
+                "-I/Users/edward/Documents/matplotlib-cpp",
+                "-I/usr/local/Cellar/python@3.12/3.12.5/Frameworks/Python.framework/Versions/3.12/include/python3.12",
+                "-I/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/numpy/core/include",
+                "-L/Users/edward/Documents/cspice/lib",
                 "src/main.cpp",
                 "src/planet.cpp",
                 "src/satellite.cpp",
@@ -18,8 +21,12 @@
                 "src/simulation.cpp",
                 "-o", "orbit_simulation",
                 "-lsqlite3",
-                "-lcspice",  // Link against cspice library
-                "-lcsupport" // Link against csupport library
+                "-lcspice",
+                "-lcsupport",
+                "-framework", "OpenGL",
+                "-framework", "GLUT",
+                "-lglfw",
+                "-lGLEW"
             ],
             "group": {
                 "kind": "build",

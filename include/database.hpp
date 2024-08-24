@@ -15,8 +15,8 @@ public:
     ~Database();
 
     bool createTables(const std::string& satelliteTable, const std::string& planetTable);
-    bool insertSatelliteData(const std::string& tableName, const Satellite& satellite, int time);
-    bool insertPlanetData(const std::string& tableName, const Planet& planet, int time);
+    bool insertSatelliteData(const std::string& tableName, const Satellite& satellite, double time);
+    bool insertPlanetData(const std::string& tableName, const Planet& planet, double time);
     void closeDatabase();
 };
 

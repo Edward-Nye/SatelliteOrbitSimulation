@@ -1,0 +1,27 @@
+{
+    "satellites": [
+        {
+            "name": "NYESAT",
+            "distance": 2e6,
+            "position": [42164E3, 1.0, 1.0],
+            "velocity": [0.0, 3.2E3, 0.0],
+            "acceleration": [0.0, 0.0, 0.0],
+            "mass": 1000.0
+        },
+        {
+            "name": "Hubble",
+            "distance": 2e6,
+            "position": [1.0, 1.0, 1.0],
+            "velocity": [7790.0, 0.1, 0.0],
+            "acceleration": [0.0, 0.0, 0.0],
+            "mass": 1000.0
+        },
+        {
+            "name": "MOON",
+            "position": [0.0, 0.0, 0.0],
+            "velocity": [0.0, 0.0, 0.0],
+            "acceleration": [0.0, 0.0, 0.0],
+            "mass": 7.349e22
+        }
+    ]
+}
