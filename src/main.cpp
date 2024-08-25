@@ -19,8 +19,8 @@ int main() {
 
     // Load the specific planet and satellites to be simulated
     std::string planetName = "EARTH"; // Example: Simulate orbit around Earth
-    std::string satelliteNames = "NYESAT"; // Example: Choose specific satellites
-    std::string pointOfRef = "EARTH"; // Point of reference for sim
+    std::string satelliteNames = "MOON"; // Example: Choose specific satellites
+    std::string pointOfRef = "SUN"; // Point of reference for sim
 
     // Load data from files
     simulation.loadPlanets(planetsFile, planetName, startDate, pointOfRef);
@@ -34,8 +34,8 @@ int main() {
     double Year = Day * 365; 
 
     // Run the simulation
-    double totalDuration = Week; // Total simulation duration in seconds (e.g., 1 day)
-    int timeStep = Min;         // Time step in seconds (e.g., 1 minute)
+    double totalDuration = Year; // Total simulation duration in seconds (e.g., 1 day)
+    int timeStep = Hour;         // Time step in seconds (e.g., 1 minute)
 
     auto positionalData = simulation.run(totalDuration, timeStep, startDate, pointOfRef);
 

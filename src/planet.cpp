@@ -24,7 +24,7 @@ void Planet::updatePosition(const Satellite& satellite, double timeStep, const s
         double distanceOfSatellite = 0.0; // Distance of Satellite from sun 
 
         for (int i = 0; i < 3; ++i) {
-            distanceVector[i] = satellite.position[i] - position[i];
+            distanceVector[i] = position[i] - satellite.position[i];
             distanceSatellite += distanceVector[i] * distanceVector[i];
             distanceSun += position[i] * position[i];
             distanceOfSatellite += satellite.position[i] * satellite.position[i]; 
@@ -62,7 +62,7 @@ void Planet::updatePosition(const Satellite& satellite, double timeStep, const s
     if (name == pointOfRef) {
         std::cout << "Planet Frame of Reference:" << name << std::endl;
         for (int i = 0; i < 3; ++i) {
-            distanceVector[i] = satellite.position[i] - position[i];
+            distanceVector[i] = position[i] - satellite.position[i];
             distanceSatellite += distanceVector[i] * distanceVector[i];
         }
         

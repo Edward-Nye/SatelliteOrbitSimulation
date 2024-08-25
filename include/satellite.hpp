@@ -19,7 +19,7 @@ public:
               const std::array<double, 3>& vel, const std::array<double, 3>& acc,
               double mass);
 
-    void updatePosition(const Planet& planet, double timeStep, const std::string& pointOfRef);
+    void updatePosition(const Planet& planet, double timeStep, const std::string& pointOfRef, std::array<double, 6>& preState, double time);
     void applyManeuver(const std::array<double, 3>& deltaV);
 };
 

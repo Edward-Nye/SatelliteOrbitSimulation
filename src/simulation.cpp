@@ -179,7 +179,7 @@ std::map<std::string, std::vector<std::array<double, 3>>> Simulation::run(double
     std::cout << "Simulation started..." << std::endl; // Test output
     std::cout << "Number of planets: " << planets.size() << std::endl;
     std::cout << "Number of satellites: " << satellites.size() << std::endl;
-
+    std::array<double, 6> preState;
     SpiceDouble et;
     
     // Convert a calendar date to ephemeris time
@@ -204,7 +204,7 @@ std::map<std::string, std::vector<std::array<double, 3>>> Simulation::run(double
         
         for (auto& satellite : satellites) {
             for (const auto& planet : planets) {
-                satellite.updatePosition(planet, timeStep, pointOfRef);
+                satellite.updatePosition(planet, timeStep, pointOfRef, preState, currentTime);
             }
             database.insertSatelliteData(satelliteTable, satellite, currentTime);
 

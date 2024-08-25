@@ -66,7 +66,7 @@ def plot_data(planet_data, satellite_data):
     ax3.plot(planet_data[:, 0], planet_data[:, 1], planet_data[:, 2], c='b', label='Planets')
     ax3.plot(satellite_data[:, 0], satellite_data[:, 1], satellite_data[:, 2], c='r', label='Satellites')
     ax3.plot_wireframe(earthX, earthY, earthZ, linewidth=0.5)
-    #ax3.plot_wireframe(moonX, moonY, moonZ, linewidth=0.5)
+    ax3.plot_wireframe(moonX, moonY, moonZ, linewidth=0.5)
     #ax3.plot_wireframe(SOIearthX, SOIearthY, SOIearthZ, linewidth=0.1)
     #ax3.plot_wireframe(SOImoonX, SOImoonY, SOImoonZ, linewidth=0.1)
     ax3.set_title('Planet and Satellite Data')
