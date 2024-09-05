@@ -21,7 +21,7 @@ public:
            const std::array<double, 3>& vel, const std::array<double, 3>& acc,
            double radius, double mass, const std::array<double, 2>& spin);
 
-    void updatePosition(const Satellite& Satellite, double timeStep, const std::string& pointOfRef);
+    void updatePosition(const std::vector<Satellite>& satellites, double timeStep, const std::string& pointOfRef);
 };
 
 #endif // PLANET_HPP

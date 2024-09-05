@@ -21,8 +21,8 @@ public:
 
     Simulation(const std::string& dbPath);
 
-    void loadPlanets(const std::string& jsonFilePath, const std::string& planetName, const std::string& startDate, const std::string& pointOfRef);
-    void loadSatellites(const std::string& jsonFilePath, const std::string& satelliteName, const std::string& startDate, const std::string& pointOfRef);
+    void loadPlanets(const std::string& jsonFilePath, std::vector<std::string>& planetName, const std::string& startDate, const std::string& pointOfRef);
+    void loadSatellites(const std::string& jsonFilePath, std::vector<std::string>& satelliteName, const std::string& startDate, const std::string& pointOfRef, const std::string& startPlanet);
     std::map<std::string, std::vector<std::array<double, 3>>> run(double totalDuration, int timeStep, const std::string& startDate, const std::string& pointOfRef);
 
 };

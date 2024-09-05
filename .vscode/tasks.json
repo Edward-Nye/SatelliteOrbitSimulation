@@ -19,12 +19,15 @@
                 "src/satellite.cpp",
                 "src/database.cpp",
                 "src/simulation.cpp",
-                "-o", "orbit_simulation",
+                "-o",
+                "orbit_simulation",
                 "-lsqlite3",
                 "-lcspice",
                 "-lcsupport",
-                "-framework", "OpenGL",
-                "-framework", "GLUT",
+                "-framework",
+                "OpenGL",
+                "-framework",
+                "GLUT",
                 "-lglfw",
                 "-lGLEW"
             ],
@@ -32,7 +35,9 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"],
+            "problemMatcher": [
+                "$gcc"
+            ],
             "detail": "Generated task by ChatGPT"
         }
     ]
