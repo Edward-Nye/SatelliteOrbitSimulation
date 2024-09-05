@@ -9,7 +9,7 @@
 
 int main() {
     // Define paths to the database and input files
-    std::string dbPath = "/Users/edward/Documents/SatelliteOrbitSimulation/data/OrbitalData.db";
+    std::string dbPath = "/Users/edward/Documents/data/OrbitalData.db";
     std::string planetsFile = "/Users/edward/Documents/SatelliteOrbitSimulation/data/planets.json";
     std::string satellitesFile = "/Users/edward/Documents/SatelliteOrbitSimulation/data/satellites.json";
 
@@ -20,10 +20,10 @@ int main() {
     std::string startDate = "2025-01-01T00:00:00";
 
     // Load the specific planet and satellites to be simulated
-    std::vector<std::string> planetNames = {"EARTH", "VENUS"/*, "MERCURY", "MARS BARYCENTER", "JUPITER BARYCENTER", "SATURN BARYCENTER", "URANUS BARYCENTER", "NEPTUNE BARYCENTER"*/}; // List of Planets
+    std::vector<std::string> planetNames = {"EARTH"/*, "VENUS", "MERCURY", "MARS BARYCENTER", "JUPITER BARYCENTER", "SATURN BARYCENTER", "URANUS BARYCENTER", "NEPTUNE BARYCENTER"*/}; // List of Planets
     std::string startPlanet = "EARTH"; // Start Planet
-    std::vector<std::string> satelliteNames = {"NYESAT","MOON"}; // List of Satellites
-    std::string pointOfRef = "SUN"; // Point of reference for sim
+    std::vector<std::string> satelliteNames = {"NYESAT"}; // List of Satellites
+    std::string pointOfRef = "EARTH BARYCENTER"; // Point of reference for sim
 
     // Load data from files
     simulation.loadPlanets(planetsFile, planetNames, startDate, pointOfRef);
