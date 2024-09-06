@@ -156,14 +156,15 @@ void Simulation::loadSatellites(const std::string& jsonFilePath, std::vector<std
             
                 std::array<double, 3> acc = {0.0, 0.0, 0.0};
                 std::array<double, 6> preState = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-
+                std::array<double, 3> rot = {0.0, 0.0, 0.0};
+                std::array<double, 3> rotR = {0.0, 0.0, 0.0};
                 // Load other parameters from the JSON file
                 //double radius = satelliteData["radius"];
                 double mass = satelliteData["mass"];
                 //std::array<double, 2> spin = satelliteData["spin"].get<std::array<double, 2>>();
 
                 // Store the planet data in the simulation's planet list
-                satellites.emplace_back(name, pos, vel, acc, mass, preState);
+                satellites.emplace_back(name, pos, vel, acc, mass, preState, rot, rotR);
 
                 std::cout << "Loaded Satellite: " << name << std::endl;
                 std::cout << "Position: " << pos[0] << ", " << pos[1] << ", " << pos[2] << std::endl;

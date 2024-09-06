@@ -9,8 +9,10 @@
 // Constructor to initialize the satellite
 Satellite::Satellite(const std::string& name, const std::array<double, 3>& pos,
                      const std::array<double, 3>& vel, const std::array<double, 3>& acc,
-                     double mass, std::array<double, 6> preState)
-    : name(name), position(pos), velocity(vel), acceleration(acc), mass(mass), preState(preState) {}
+                     double mass, std::array<double, 6> preState, std::array<double, 3> rot,
+                     std::array<double, 3> rotR)
+    : name(name), position(pos), velocity(vel), acceleration(acc), mass(mass), preState(preState),
+    rotation(rot), rotationRates(rotR) {}
 
 
 // Method to update the satellite's position based on the gravitational force from a planet

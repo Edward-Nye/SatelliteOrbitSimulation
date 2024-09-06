@@ -37,7 +37,7 @@ int main() {
     double Year = Day * 365; 
 
     // Run the simulation
-    double totalDuration = Day; // Total simulation duration in seconds (e.g., 1 day)
+    double totalDuration = Min; // Total simulation duration in seconds (e.g., 1 day)
     int timeStep = Second;         // Time step in seconds (e.g., 1 minute)
 
     auto positionalData = simulation.run(totalDuration, timeStep, startDate, pointOfRef);
