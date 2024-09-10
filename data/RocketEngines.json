@@ -1,0 +1,60 @@
+{
+  "rocket_engines": [
+    {
+      "name": "Merlin 1D",
+      "thrust": 845000,
+      "specificImpulse": 282,
+      "fuelMass": 395700,
+      "burnRate": 270,
+      "efficiency": 0.97
+    },
+    {
+      "name": "Raptor",
+      "thrust": 2000000,
+      "specificImpulse": 330,
+      "fuelMass": 850000,
+      "burnRate": 620,
+      "efficiency": 0.99
+    },
+    {
+      "name": "RS-25",
+      "thrust": 1860000,
+      "specificImpulse": 366,
+      "fuelMass": 720000,
+      "burnRate": 472,
+      "efficiency": 0.95
+    },
+    {
+      "name": "Vulcain 2",
+      "thrust": 1370000,
+      "specificImpulse": 434,
+      "fuelMass": 160000,
+      "burnRate": 333,
+      "efficiency": 0.96
+    },
+    {
+      "name": "RD-180",
+      "thrust": 4150000,
+      "specificImpulse": 311,
+      "fuelMass": 409000,
+      "burnRate": 680,
+      "efficiency": 0.98
+    },
+    {
+      "name": "BE-4",
+      "thrust": 2400000,
+      "specificImpulse": 325,
+      "fuelMass": 500000,
+      "burnRate": 370,
+      "efficiency": 0.97
+    },
+    {
+      "name": "F-1",
+      "thrust": 6770000,
+      "specificImpulse": 263,
+      "fuelMass": 950000,
+      "burnRate": 820,
+      "efficiency": 0.94
+    }
+  ]
+}

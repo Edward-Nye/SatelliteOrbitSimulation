@@ -436,6 +436,81 @@ void Satellite::updatePosition(const std::vector<Planet>& planets, const std::ve
 std::cout << "Made It!!" << std::endl;
 }
 
+
+
+
+void Satellite::SAS(std::string mode, const std::vector<Planet>& planets, const std::string& pointOfRef, double timeStep) {
+    std::array<double, 3> target{0.0, 0.0, 0.0};
+    std::array<double, 3> direction{0.0, 0.0, 0.0};
+    std::array<double, 3> downDirection{0.0, 0.0, 0.0};
+    double yaw = 0.0;
+    double pitch = 0.0;
+    double roll = 0.0;
+
+    for (const auto& planet : planets){
+        if (planet.name == pointOfRef) {
+            for (int j = 0; j < 3; ++j){
+                target[j] = planet.position[j];
+            }
+        } else {
+            break;
+        }
+    }
+    
+    if (mode == "Prograde") {
+        // Yaw aligns with the velocity direction
+        yaw = atan2(velocity[1], velocity[0]); // Calculate heading (yaw)
+        pitch = atan2(velocity[2], sqrt(velocity[0] * velocity[0] + velocity[1] * velocity[1])); // Pitch relative to the ground plane
+        
+    }
+    else if (mode == "Retrograde") {
+        // Same as prograde but opposite direction
+        yaw = atan2(-velocity[1], -velocity[0]);
+        pitch = atan2(-velocity[2], sqrt(velocity[0] * velocity[0] + velocity[1] * velocity[1]));
+        
+    }
+    else if (mode == "radIN") {
+        // Aim towards a specific target (e.g., another satellite or ground station)
+        for (int j = 0; j < 3; ++j){
+            direction[j] = target[j] - position[j];
+        }
+        
+        yaw = atan2(direction[1], direction[0]);
+        pitch = atan2(direction[2], sqrt(direction[0] * direction[0] + direction[1] * direction[1]));
+        
+    }
+    else if (mode == "radOUT") {
+        // Nadir means pointing directly towards the center of the orbiting body
+        for (int j = 0; j < 3; ++j){
+            direction[j] = -(target[j] - position[j]);
+        }  // Vector from satellite to the center
+        yaw = atan2(downDirection[1], downDirection[0]);
+        pitch = atan2(downDirection[2], sqrt(downDirection[0] * downDirection[0] + downDirection[1] * downDirection[1]));
+        
+    }
+    else if (mode == "Fixed") {
+        // Do nothing, keep current rotation values
+        roll = rotation[0];
+        pitch = rotation[1];
+        yaw = rotation[2];
+    }
+    else {
+        std::cerr << "Unknown mode: " << mode << std::endl;
+    }
+
+    rotationRates[0] = (roll - rotation[0])/timeStep;
+    rotationRates[1] = (pitch - rotation[1])/timeStep;
+    rotationRates[2] = (yaw - rotation[2])/timeStep;
+
+    rotation[0] = roll;
+    rotation[1] = pitch;
+    rotation[2] = yaw;
+
+}
+
+
+
+
 /* Method to apply a maneuver (change in velocity) to the satellite
 void Satellite::applyManeuver(const std::array<double, 3>& deltaV) {
     for (int i = 0; i < 3; ++i) {
@@ -443,4 +518,34 @@ void Satellite::applyManeuver(const std::array<double, 3>& deltaV) {
 
     }
 */
+inline double deg2rad(double degrees) {
+    return degrees * M_PI / 180.0;
+}
+
+void Satellite::getDCM(double DCM[3][3]) {
+    double yaw = deg2rad(rotation[2]);
+    double pitch = deg2rad(rotation[1]);
+    double roll = deg2rad(rotation[0]);
+
+    // Calculate trigonometric values
+    double cy = cos(yaw);
+    double sy = sin(yaw);
+    double cp = cos(pitch);
+    double sp = sin(pitch);
+    double cr = cos(roll);
+    double sr = sin(roll);
+    
+     // Compute the Direction Cosine Matrix (DCM)
+    DCM[0][0] = cy * cp;
+    DCM[0][1] = cy * sp * sr - sy * cr;
+    DCM[0][2] = cy * sp * cr + sy * sr;
+
+    DCM[1][0] = sy * cp;
+    DCM[1][1] = sy * sp * sr + cy * cr;
+    DCM[1][2] = sy * sp * cr - cy * sr;
+
+    DCM[2][0] = -sp;
+    DCM[2][1] = cp * sr;
+    DCM[2][2] = cp * cr;
+}
 

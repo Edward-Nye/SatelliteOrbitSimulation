@@ -211,6 +211,7 @@ std::map<std::string, std::vector<std::array<double, 3>>> Simulation::run(double
         for (auto& satellite : satellites) {
             
             satellite.updatePosition(planets, satellites, timeStep, pointOfRef, currentTime);
+            satellite.SAS("Prograde", planets, pointOfRef, timeStep);
             std::cout << "made it!" << std::endl;
             database.insertSatelliteData(satelliteTable, satellite, currentTime); /////////////
 

@@ -24,10 +24,7 @@ public:
     void consumeFuel(double timeStep);  // Reduces fuel mass based on burn rate
     void applyForces(std::vector<std::array<double, 3>>& forces); // Applies forces based on thrust
 
-    // Getters and Setters
-    double getRemainingFuel() const; // Returns the remaining fuel mass
-    void setThrust(double thrust);    // Sets the thrust value
-    void setFuelMass(double fuelMass); // Sets the fuel mass
+       
 
 };
 
