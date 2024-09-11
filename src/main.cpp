@@ -12,6 +12,7 @@ int main() {
     std::string dbPath = "/Users/edward/Documents/data/OrbitalData.db";
     std::string planetsFile = "/Users/edward/Documents/SatelliteOrbitSimulation/data/planets.json";
     std::string satellitesFile = "/Users/edward/Documents/SatelliteOrbitSimulation/data/satellites.json";
+    std::string enginesFile = "/Users/edward/Documents/SatelliteOrbitSimulation/data/rocketEngines.json";
 
     // Create a Simulation object
     Simulation simulation(dbPath);
@@ -23,11 +24,13 @@ int main() {
     std::vector<std::string> planetNames = {"EARTH"/*, "VENUS", "MERCURY", "MARS BARYCENTER", "JUPITER BARYCENTER", "SATURN BARYCENTER", "URANUS BARYCENTER", "NEPTUNE BARYCENTER"*/}; // List of Planets
     std::string startPlanet = "EARTH"; // Start Planet
     std::vector<std::string> satelliteNames = {"NYESAT"}; // List of Satellites
+    std::string primarySat = "NYESAT";
+    std::string rocketEngine = "Merlin 1D";
     std::string pointOfRef = "EARTH BARYCENTER"; // Point of reference for sim
 
     // Load data from files
     simulation.loadPlanets(planetsFile, planetNames, startDate, pointOfRef);
-    simulation.loadSatellites(satellitesFile, satelliteNames, startDate, pointOfRef, startPlanet);
+    simulation.loadSatellites(satellitesFile, enginesFile, satelliteNames, primarySat, rocketEngine, startDate, pointOfRef, startPlanet);
     int Second = 1;
     int Min = Second * 60;
     int Hour = Min * 60;
@@ -40,7 +43,7 @@ int main() {
     double totalDuration = Day; // Total simulation duration in seconds (e.g., 1 day)
     int timeStep = Second;         // Time step in seconds (e.g., 1 minute)
 
-    auto positionalData = simulation.run(totalDuration, timeStep, startDate, pointOfRef);
+    auto positionalData = simulation.run(totalDuration, timeStep, startDate, pointOfRef, primarySat);
 
     // Vectors to store XYZ positions for planets and satellites
     std::map<std::string, std::vector<double>> planetX, planetY, planetZ;

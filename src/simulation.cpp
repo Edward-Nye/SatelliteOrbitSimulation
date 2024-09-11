@@ -101,7 +101,9 @@ void Simulation::loadPlanets(const std::string& jsonFilePath, std::vector<std::s
     
 }
 
-void Simulation::loadSatellites(const std::string& jsonFilePath, std::vector<std::string>& satelliteNames, const std::string& startDate, const std::string& pointOfRef, const std::string& startPlanet) {
+void Simulation::loadSatellites(const std::string& jsonFilePath, const std::string& jsonREFilePath, std::vector<std::string>& satelliteNames,
+                                const std::string& primarySat, const std::string& rocketEngine, const std::string& startDate, const std::string& pointOfRef,
+                                const std::string& startPlanet) {
     
     // Load the SPK file using SPICE
     furnsh_c("/Users/edward/Documents/spice_kernels/de440s.bsp");
@@ -113,10 +115,19 @@ void Simulation::loadSatellites(const std::string& jsonFilePath, std::vector<std
         std::cerr << "Unable to open JSON file: " << jsonFilePath << std::endl;
         return;
     }
+    std::ifstream inputFile2(jsonREFilePath);
+    if (!inputFile2.is_open()) {
+        std::cerr << "Unable to open JSON file: " << jsonREFilePath << std::endl;
+        return;
+    }
+
 
     nlohmann::json jsonData;
+    nlohmann::json jsonData2;
     inputFile >> jsonData;
+    inputFile2 >> jsonData2;
     inputFile.close();
+    inputFile2.close();
 
     // Convert the start date to ephemeris time (ET)
     SpiceDouble et;
@@ -173,14 +184,35 @@ void Simulation::loadSatellites(const std::string& jsonFilePath, std::vector<std
                 break;
             }
         }
+        
+        for (const auto& engineData : jsonData2["rocket_engines"]) {
+            std::string name = engineData["name"];
+
+            if (name == rocketEngine) {
+                
+                double thrust = engineData["thrust"].get<double>();                 // Thrust produced by the engine (in Newtons)
+                double specificImpulse = engineData["specificImpulse"].get<double>();        // Specific impulse of the engine (in seconds)
+                double fuelMass = engineData["fuelMass"].get<double>();               // Mass of the fuel (in kilograms)
+                double burnRate = engineData["burnRate"].get<double>();               // Fuel burn rate (in kilograms per second)
+                double efficiency = engineData["efficiency"].get<double>();
+
+                engine.emplace_back(name, thrust, specificImpulse, fuelMass, burnRate, efficiency);
+                break;
+            }    
+
+        }
+
     }
+
+
     // Unload the SPICE kernels after use
     unload_c("/Users/edward/Documents/spice_kernels/de440s.bsp");
     
 }
 
 
-std::map<std::string, std::vector<std::array<double, 3>>> Simulation::run(double totalDuration, int timeStep, const std::string& startDate, const std::string& pointOfRef) {
+std::map<std::string, std::vector<std::array<double, 3>>> Simulation::run(double totalDuration, int timeStep, const std::string& startDate, const std::string& pointOfRef, 
+                                                                          const std::string& primarySat) {
     
     std::map<std::string, std::vector<std::array<double, 3>>> positionalData;
     std::cout << "Simulation started..." << std::endl; // Test output
@@ -209,11 +241,13 @@ std::map<std::string, std::vector<std::array<double, 3>>> Simulation::run(double
     while (currentTime <= totalDuration) {
         
         for (auto& satellite : satellites) {
-            
-            satellite.updatePosition(planets, satellites, timeStep, pointOfRef, currentTime);
+
+            engine[0].applyForces(satellites, primarySat,timeStep);
             satellite.SAS("Prograde", planets, pointOfRef, timeStep);
+            satellite.updatePosition(planets, satellites, timeStep, pointOfRef, currentTime);
+            
             std::cout << "made it!" << std::endl;
-            database.insertSatelliteData(satelliteTable, satellite, currentTime); /////////////
+            database.insertSatelliteData(satelliteTable, satellite, engine, currentTime); /////////////
 
             // Store the satellite's position in the positionalData map
             positionalData[satellite.name].push_back(satellite.position);

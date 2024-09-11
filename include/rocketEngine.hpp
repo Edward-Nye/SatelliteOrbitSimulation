@@ -1,9 +1,11 @@
 #ifndef ROCKETENGINE_HPP
 #define ROCKETENGINE_HPP
-
+#include "satellite.hpp"
 #include <string>
 #include <array>
 #include <vector>
+
+class Satellite;
 
 class RocketEngine {
 public:
@@ -22,7 +24,7 @@ public:
     // Methods to update and manage the engine
     void updateThrust(double timeStep); // Updates the thrust based on time
     void consumeFuel(double timeStep);  // Reduces fuel mass based on burn rate
-    void applyForces(std::vector<std::array<double, 3>>& forces); // Applies forces based on thrust
+    void applyForces(std::vector<Satellite>& satellites, const std::string& primarySat, double timeStep); // Applies forces based on thrust
 
        
 

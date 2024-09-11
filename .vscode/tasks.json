@@ -19,6 +19,7 @@
                 "src/satellite.cpp",
                 "src/database.cpp",
                 "src/simulation.cpp",
+                "src/rocketEngine.cpp",
                 "-o",
                 "orbit_simulation",
                 "-lsqlite3",

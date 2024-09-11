@@ -522,7 +522,9 @@ inline double deg2rad(double degrees) {
     return degrees * M_PI / 180.0;
 }
 
-void Satellite::getDCM(double DCM[3][3]) {
+std::array<std::array<double, 3>, 3> Satellite::getDCM() const {
+    std::array<std::array<double, 3>, 3> DCM; // Define local DCM array
+
     double yaw = deg2rad(rotation[2]);
     double pitch = deg2rad(rotation[1]);
     double roll = deg2rad(rotation[0]);
@@ -535,7 +537,7 @@ void Satellite::getDCM(double DCM[3][3]) {
     double cr = cos(roll);
     double sr = sin(roll);
     
-     // Compute the Direction Cosine Matrix (DCM)
+    // Compute the Direction Cosine Matrix (DCM)
     DCM[0][0] = cy * cp;
     DCM[0][1] = cy * sp * sr - sy * cr;
     DCM[0][2] = cy * sp * cr + sy * sr;
@@ -547,5 +549,7 @@ void Satellite::getDCM(double DCM[3][3]) {
     DCM[2][0] = -sp;
     DCM[2][1] = cp * sr;
     DCM[2][2] = cp * cr;
+
+    return DCM;
 }
 

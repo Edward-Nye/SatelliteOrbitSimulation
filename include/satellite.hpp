@@ -29,7 +29,7 @@ public:
     void SAS(std::string mode, const std::vector<Planet>& planets, const std::string& pointOfRef, double timeStep);
     //void applyManeuver(const std::array<double, 3>& deltaV);
 
-    void getDCM(double DCM[3][3]);
+    std::array<std::array<double, 3>, 3> getDCM() const;
 
 };
 
